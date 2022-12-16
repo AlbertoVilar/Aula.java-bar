@@ -1,36 +1,43 @@
 package util;
 
 public class Bill {
-	char genger;
+	public char genger;
 	public int beer;
 	public int barbecue;
 	public int softDrink;
 	public static final Double EXEMPT_VALUE = 4.0;
-
-	public double ticket() {
-		return 10.0;
-	}
-
-	public double cover() {
-
-		return EXEMPT_VALUE;
-
-	}
+	public 	double total;
+	
 
 	public double feeding() {
-		double feeding = beer * 5.0 + this.softDrink * 3.0 + this.barbecue * 7.00;
+		double feeding = beer * 5.0 + this.softDrink * 3.0 + this.barbecue * 7.0;
 		return feeding;
 
 	}
-
-	public double totalValue() {
-		double total = 0;
-		total = total + cover() + feeding() + ticket();
-		if (total > 30.0) {
-			total -= cover();
+	public double cover() {
+		if (feeding() > 30.0) {
+			return 0.0;
+		}else {
+			return EXEMPT_VALUE;
 		}
-		return total;
-		
 
 	}
-}
+
+	public double ticket() {
+		if (genger == 'F') {
+			return 8.0;
+		} else {
+			return 10.0;
+		}
+	}
+
+	public double totalValue() {
+	
+			total = cover() + feeding() + ticket();
+
+			return total;
+
+		}
+
+	}
+
